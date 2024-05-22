@@ -21,15 +21,31 @@ class FormControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    void createPerson() throws Exception{
+    void formHello() throws Exception{
         mockMvc.perform(
-                post("/form/person")
+                post("/form/hello")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("name", "Ramanda")
         ).andExpectAll(
                 status().isOk(),
                 header().string(HttpHeaders.CONTENT_TYPE, Matchers.containsString(MediaType.TEXT_HTML_VALUE)),
                 content().string(Matchers.containsString("Hello Ramanda"))
+        );
+    }
+
+    @Test
+    void createPerson() throws Exception{
+        mockMvc.perform(
+                post("/form/person")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("name", "Ramanda")
+                        .param("birthDate", "1990-12-12")
+                        .param("address", "Indonesia")
+        ).andExpectAll(
+                status().isOk(),
+                content().string(Matchers.containsString("Success create Person with name : Ramanda, " +
+                        "birthDate : 1990-12-12, " +
+                        "address : Indonesia"))
         );
     }
 }
