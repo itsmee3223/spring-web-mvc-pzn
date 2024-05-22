@@ -15,7 +15,7 @@ public class HelloController {
     public void helloWorld(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
         if(Objects.isNull(name)) {
-            name = "Gues";
+            name = "Guest";
         }
         response.getWriter().println("Hello " +  name);
     }
