@@ -59,7 +59,7 @@ class PersonControllerTest {
                         .param("lastName", "Asyraf")
         ).andExpectAll(
                 status().isBadRequest(),
-                content().string(Matchers.containsString("Validation Error"))
+                content().string(Matchers.containsString("You send invalid data"))
         );
     }
 }
