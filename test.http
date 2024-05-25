@@ -1,0 +1,18 @@
+POST http://localhost:8081/api/person
+Content-Type: application/json
+Accept: application/json
+
+{
+  "firstName" : "Ramanda",
+  "middleName": "Ajisaka",
+  "lastName": "Asyraf",
+  "email": "rama@example.com",
+  "phone": "082034234324",
+  "hobbies": ["Coding", "Gaming"],
+  "socialMedias": [
+    {
+      "name": "Facebook",
+      "location": "facebook.com/oke"
+    }
+  ]
+}
