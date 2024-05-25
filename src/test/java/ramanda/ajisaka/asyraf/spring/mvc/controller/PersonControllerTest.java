@@ -58,7 +58,8 @@ class PersonControllerTest {
                         .param("middleName", "Ajisaka")
                         .param("lastName", "Asyraf")
         ).andExpectAll(
-                status().isBadRequest()
+                status().isBadRequest(),
+                content().string(Matchers.containsString("Validation Error"))
         );
     }
 }
