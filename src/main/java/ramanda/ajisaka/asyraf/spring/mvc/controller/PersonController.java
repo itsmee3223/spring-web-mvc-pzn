@@ -1,5 +1,6 @@
 package ramanda.ajisaka.asyraf.spring.mvc.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,7 +14,7 @@ public class PersonController {
     @PostMapping(path = "/person", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @ResponseBody
     public String createPerson(
-            @ModelAttribute CreatePersonRequest request
+            @ModelAttribute @Valid CreatePersonRequest request
             ){
         System.out.println(request);
 

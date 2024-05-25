@@ -48,4 +48,17 @@ class PersonControllerTest {
                         "with address Jalan Belum Jadi, Jakarta, Indonesia, 11111"))
         );
     }
+
+    @Test
+    void testPersonInvalid() throws Exception {
+        mockMvc.perform(
+                post("/person")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("firstName", "Ramanda")
+                        .param("middleName", "Ajisaka")
+                        .param("lastName", "Asyraf")
+        ).andExpectAll(
+                status().isBadRequest()
+        );
+    }
 }
