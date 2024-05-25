@@ -1,5 +1,6 @@
 package ramanda.ajisaka.asyraf.spring.mvc.controller;
 
+import jakarta.servlet.http.Cookie;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,8 @@ class AuthControllerTest {
                         .param("password", "asyraf")
         ).andExpectAll(
                 status().isOk(),
-                content().string(Matchers.containsString("OK"))
+                content().string(Matchers.containsString("OK")),
+                cookie().value("username", Matchers.containsString("ramanda"))
         );
     }
 
@@ -46,6 +48,17 @@ class AuthControllerTest {
         ).andExpectAll(
                 status().isUnauthorized(),
                 content().string(Matchers.containsString("KO"))
+        );
+    }
+
+    @Test
+    void testCookie() throws Exception {
+        mockMvc.perform(
+                get("/auth/user")
+                        .cookie(new Cookie("username", "ramanda"))
+        ).andExpectAll(
+                status().isUnauthorized(),
+                content().string(Matchers.containsString("Hello ramanda"))
         );
     }
 
