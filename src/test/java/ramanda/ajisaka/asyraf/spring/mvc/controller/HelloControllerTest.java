@@ -47,4 +47,15 @@ class HelloControllerTest {
         );
     }
 
+    @Test
+    void helloView() throws Exception {
+        mockMvc.perform(
+                get("/web/hello").queryParam("name", "Ramanda")
+        ).andExpectAll(
+                status().isOk(),
+                content().string(Matchers.containsString("Belajar View")),
+                content().string(Matchers.containsString("Hello Ramanda"))
+        );
+    }
+
 }
